@@ -1,48 +1,37 @@
-import { Outlet, NavLink, useNavigate } from "react-router-dom"
+import { Outlet, NavLink } from "react-router-dom"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { supabase } from "@/lib/supabase"
-import logo from "@/assets/suizo-argentina.png"
 import {
   LayoutDashboard,
-  ClipboardList,
-  Users,
-  Home,
-  Settings,
-  LogOut,
+  CalendarDays,
+  Sparkles,
+  ListTodo,
+  Network,
+  Route,
 } from "lucide-react"
 
 const nav = [
-  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/home-office", label: "Home Office", icon: Home },
-  { to: "/requests", label: "Solicitudes", icon: ClipboardList },
-  { to: "/employees", label: "Empleados", icon: Users },
-  { to: "/settings", label: "Configuración", icon: Settings },
+  { to: "/dashboard", label: "Overview", icon: LayoutDashboard },
+  { to: "/realms", label: "Reinos", icon: Sparkles },
+  { to: "/missions", label: "Misiones", icon: ListTodo },
+  { to: "/calendar", label: "Calendario", icon: CalendarDays },
+  { to: "/blueprint", label: "Blueprint", icon: Network },
+  { to: "/roadmap", label: "Roadmap", icon: Route },
 ]
 
 export function AppShell() {
-  const navigate = useNavigate()
-
-  const onLogout = async () => {
-    await supabase.auth.signOut()
-    navigate("/login", { replace: true })
-  }
-
   return (
     <div className="min-h-screen bg-grid glow">
       <div className="mx-auto flex min-h-screen w-full max-w-[1800px] gap-4 p-4">
         <aside className="hidden w-[280px] shrink-0 lg:block">
-          <div className="sticky top-4 rounded-2xl border border-slate-200/70 bg-white/70 backdrop-blur p-4 shadow-soft">
-            <div className="mb-4">
-              <div className="mb-3 flex items-center justify-center">
-                <img
-                  src={logo}
-                  alt="Suizo Argentina"
-                  className="h-8 w-auto object-contain"
-                />
+          <div className="sticky top-4 rounded-3xl border border-emerald-500/10 bg-[#0c130f]/80 backdrop-blur p-5 shadow-soft">
+            <div className="mb-6">
+              <div className="text-xs uppercase tracking-[0.3em] text-emerald-200/70">
+                LIFE:180
               </div>
-              <div className="text-sm font-semibold text-slate-900">Licencias</div>
-              <div className="text-xs text-slate-500">Vacaciones • Equipo</div>
+              <div className="mt-2 text-lg font-semibold text-white">Sistema de evolución humana</div>
+              <div className="text-xs text-emerald-100/60">
+                Seis reinos. Misiones diarias. Progreso visible.
+              </div>
             </div>
 
             <nav className="space-y-1">
@@ -54,10 +43,10 @@ export function AppShell() {
                     to={item.to}
                     className={({ isActive }) =>
                       cn(
-                        "flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition",
+                        "flex items-center gap-3 rounded-2xl px-3 py-2 text-sm transition",
                         isActive
-                          ? "bg-slate-900 text-white shadow-soft"
-                          : "text-slate-700 hover:bg-slate-50"
+                          ? "bg-emerald-400/15 text-emerald-100 shadow-soft"
+                          : "text-emerald-100/70 hover:bg-emerald-500/10"
                       )
                     }
                   >
@@ -68,32 +57,29 @@ export function AppShell() {
               })}
             </nav>
 
-            <div className="mt-6 border-t border-slate-200/70 pt-4">
-              <Button
-                variant="outline"
-                className="w-full justify-start gap-2"
-                onClick={onLogout}
-              >
-                <LogOut className="h-4 w-4" />
-                Cerrar sesión
-              </Button>
+            <div className="mt-6 rounded-2xl border border-emerald-500/10 bg-emerald-500/5 p-4">
+              <div className="text-xs text-emerald-100/70">Temporada actual</div>
+              <div className="text-lg font-semibold text-white">S07 • Eclipse Verde</div>
+              <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-emerald-950">
+                <div className="h-full w-[62%] rounded-full bg-gradient-to-r from-emerald-400 via-lime-300 to-emerald-200" />
+              </div>
+              <div className="mt-2 text-xs text-emerald-100/60">62% completado</div>
             </div>
           </div>
         </aside>
 
         <main className="flex-1">
-          <div className="sticky top-4 z-10 rounded-2xl border border-slate-200/70 bg-white/70 backdrop-blur px-4 py-3 shadow-soft">
+          <div className="sticky top-4 z-10 rounded-3xl border border-emerald-500/10 bg-[#0c130f]/80 backdrop-blur px-4 py-3 shadow-soft">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <div className="text-sm font-semibold text-slate-900">Panel</div>
-                <div className="text-xs text-slate-500">
-                  Control visual de vacaciones (timeline + mes)
+                <div className="text-sm font-semibold text-white">LIFE:180 Command Center</div>
+                <div className="text-xs text-emerald-100/60">
+                  Diseñado para entrar todos los días y sentir el progreso.
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <div className="hidden sm:block text-xs text-slate-600">Empresa:</div>
-                <div className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs text-slate-700">
-                  Suizo Argentina (demo)
+                <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-xs text-emerald-100">
+                  Magic Link • Demo
                 </div>
               </div>
             </div>
