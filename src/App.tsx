@@ -1,10 +1,11 @@
 import { Routes, Route, Navigate } from "react-router-dom"
 import { AppShell } from "@/components/layout/app-shell"
 import { DashboardPage } from "@/pages/dashboard"
-import { EmployeesPage } from "@/pages/employees"
-import { RequestsPage } from "@/pages/requests"
-import { SettingsPage } from "@/pages/settings"
-import { HomeOfficePage } from "@/pages/home-office"
+import { CalendarPage } from "@/pages/calendar"
+import { RealmsPage } from "@/pages/realms"
+import { MissionsPage } from "@/pages/missions"
+import { BlueprintPage } from "@/pages/blueprint"
+import { RoadmapPage } from "@/pages/roadmap"
 import { LoginPage } from "@/pages/login"
 
 export default function App() {
@@ -14,10 +15,11 @@ export default function App() {
       <Route path="/" element={<AppShell />}>
         <Route index element={<Navigate to="/dashboard" replace />} />
         <Route path="dashboard" element={<DashboardPage />} />
-        <Route path="home-office" element={<HomeOfficePage />} />
-        <Route path="requests" element={<RequestsPage />} />
-        <Route path="employees" element={<EmployeesPage />} />
-        <Route path="settings" element={<SettingsPage />} />
+        <Route path="realms" element={<RealmsPage />} />
+        <Route path="missions" element={<MissionsPage />} />
+        <Route path="calendar" element={<CalendarPage />} />
+        <Route path="blueprint" element={<BlueprintPage />} />
+        <Route path="roadmap" element={<RoadmapPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
